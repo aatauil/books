@@ -1,0 +1,43 @@
+<div class="container m-auto">
+    
+<h2 id="title"  class="py-3 font-bold text-2xl">My books</h2>
+<form {{on "submit" this.createBook}} class="py-6 border rounded px-3" >
+    <dl>
+            <dt>Book title</dt>
+        <dd>
+            <Input class="border" @value={{this.newHeadline}}
+                @placeholder="Thinking Fast and Slow" />
+        </dd>
+                    <br>
+        <dt>ISBN</dt>
+        <dd>
+
+        <Input  class="border" @value={{this.newIsbn}}
+            @placeholder="978-0374533557" />
+        </dd>
+
+         <dt>Author</dt>
+        <dd>
+
+        <Input  class="border" @value={{this.newAuthor}}
+            @placeholder="978-0374533557" />
+        </dd>
+            <br> 
+    </dl>
+    <button class="bg-green-200 font-bold text-xl py-1 px-6" type="submit">Create</button>
+</form>
+<hr><hr>
+
+<ul class="bg-gray-100">
+    {{#each @model as |book|}}
+        <li class="bg-gray-200 my-3 p-4" >
+            <h3 class="font-bold ">{{book.headline}}</h3> 
+            <small class="font-bold ">{{book.isbn}}</small>
+            <small class="font-bold ">{{book.author}}</small>
+            <br>
+            <button  class="bg-red-200 px-4 py-1 rounded"  type="button" {{on "click" (fn this.removeBook book)}}>Remove</button>
+        </li>
+
+    {{/each}}
+</ul>
+</div>

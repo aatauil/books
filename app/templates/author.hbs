@@ -1,0 +1,28 @@
+<div class="container m-auto">
+ 
+<h2 id="title" class="py-3 font-bold text-2xl">My Authors</h2>
+<form {{on "submit" this.createBook}}  class="py-6 border rounded px-3">
+    <dl>
+            <dt>Author name</dt>
+        <dd>
+            <Input class="border" @value={{this.newFamilyName}}
+                @placeholder="J.K Rowling" />
+        </dd>
+                    <br>
+            <br> 
+    </dl>
+    <button class="bg-green-200 font-bold text-xl py-1 px-6" type="submit">Create</button>
+</form>
+<hr><hr>
+
+<ul class="bg-gray-100">
+    {{#each @model as |author|}}
+        <li class="bg-gray-200 my-3 p-4" >
+            <h3 class="font-bold ">{{author.familyname}}</h3> 
+           <br>
+            <button class="bg-red-200 px-4 py-1 rounded" type="button" {{on "click" (fn this.removeAuthor author)}}>Remove</button>
+        </li>
+
+    {{/each}}
+</ul>
+</div>
