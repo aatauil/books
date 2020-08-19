@@ -1,3 +1,29 @@
+<nav class="bg-black">
+    <ul class="container text-white flex py-4 justify-between m-auto">
+        <div class="flex">
+        <li>
+            <LinkTo @route='book' class="bg-gray-700 py-2 px-4 mr-2 hover:bg-gray-900">Books</LinkTo>
+        </li>
+        <li>
+            <LinkTo @route='author' class="bg-gray-700 py-2 mr-2 px-4 hover:bg-gray-900">Authors</LinkTo>
+        </li>
+        <li>
+            <LinkTo @route='search' class="bg-gray-700 py-2 mr-2 px-4 hover:bg-gray-900">Search</LinkTo>
+        </li>
+        </div>
+        <div>
+        <li>
+          {{#if this.session.isAuthenticated}}
+          <LinkTo @route="members" class="bg-gray-200 text-black py-2 px-4 mr-2 hover:bg-gray-900">members</LinkTo>
+            <a href="" {{on "click" this.invalidateSession}}>Logout</a>
+        {{else}}
+            <LinkTo @route='login' class="bg-blue-700 py-2 mr-2 px-4 hover:bg-gray-900">Login</LinkTo>
+        {{/if}}
+   
+        </li>
+        </div>
+    </ul>
+</nav>
 
 
 {{outlet}}

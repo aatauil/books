@@ -1,7 +1,50 @@
+
+{{#if this.modalOpen}}
+    <div class="bg-black-trans top-0 h-screen w-screen fixed flex flex-col m-auto justify-center items-center">
+    <article class="  p-6 rounded flex flex-col">
+        <h2 class="bg-white p-4 font-bold my-2">This author does not seem to exist yet. <br> Do you want to add a new author</h2>
+        <button type="button" class="bg-green-400 rounded py-2" {{on 'click' this.saveAuthorAndBook }}>Add Author</button>
+        <button type="button" class="text-white py-2"  {{on 'click' this.saveBook }}>Continue without adding</button>
+    </article>
+
+</div>
+{{/if}}
+
+{{#if this.modModal}}
+    <div class="bg-black-trans top-0 h-screen w-screen fixed flex flex-col m-auto justify-center items-center">
+        <form {{on "submit" this.updateBook}} class="py-6 border rounded p-6 bg-white"  >
+            <dl>
+                    <dt>Book title</dt>
+                <dd>
+                    <Input class="border" @value={{this.modHeadline}}
+                        @placeholder="Thinking Fast and Slow" />
+                </dd>
+                            <br>
+                <dt>ISBN</dt>
+                <dd>
+
+                <Input  class="border" @value={{this.modIsbn}}
+                    @placeholder="978-0374533557" />
+                </dd>
+
+                <dt class="mt-6">Author</dt>
+                <dd>
+
+                <Input  class="border" @value={{this.modAuthor}}
+                    @placeholder="978-0374533557" />
+                </dd>
+                    <br> 
+            </dl>
+            <button class="bg-green-200 font-bold text-xl py-1 px-6" type="submit">Update</button>
+            <button type="button" class="bg-black text-white font-bold text-xl py-1 px-6" {{on "click" this.closeMod}}>Cancel</button>
+        </form>
+    </div>
+{{/if}}
+
 <div class="container m-auto">
     
 <h2 id="title"  class="py-3 font-bold text-2xl">My books</h2>
-<form {{on "submit" this.createBook}} class="py-6 border rounded px-3" >
+<form {{on "submit" this.checkAuthor}} class="py-6 border rounded px-3" >
     <dl>
             <dt>Book title</dt>
         <dd>
@@ -16,7 +59,7 @@
             @placeholder="978-0374533557" />
         </dd>
 
-         <dt>Author</dt>
+         <dt  class="mt-6">Author</dt>
         <dd>
 
         <Input  class="border" @value={{this.newAuthor}}
@@ -33,9 +76,10 @@
         <li class="bg-gray-200 my-3 p-4" >
             <h3 class="font-bold ">{{book.headline}}</h3> 
             <small class="font-bold ">{{book.isbn}}</small>
-            <small class="font-bold ">{{book.author}}</small>
+            <small class="font-bold ">{{book.author.familyname}}</small>
             <br>
-            <button  class="bg-red-200 px-4 py-1 rounded"  type="button" {{on "click" (fn this.removeBook book)}}>Remove</button>
+            <button class="bg-red-200 px-4 py-1 rounded"  type="button" {{on "click" (fn this.removeBook book)}}>Remove</button>
+            <button class="bg-black text-white px-4 py-1 rounded"  type="button" {{on "click" (fn this.editBook book)}}>Edit</button>
         </li>
 
     {{/each}}

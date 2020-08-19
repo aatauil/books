@@ -20,8 +20,24 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+    },
+
+    torii: {
+      disableRedirectInitializer: true,
+      providers: {
+        'acmidm-oauth2': {
+          apiKey: 'your-key',
+          baseUrl: 'https://authenticatie-ti.vlaanderen.be/op/v1/auth',
+          scope: 'openid rrn vo profile',
+          redirectUri: 'https://loket.lblod.info/authorization/callback',
+          logoutUrl: 'https://authenticatie-ti.vlaanderen.be/op/v1/logout',
+          switchUrl: 'https://loket.lblod.info/switch-login' //optional
+        }
+      }
     }
   };
+
+  
 
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
@@ -41,11 +57,15 @@ module.exports = function(environment) {
 
     ENV.APP.rootElement = '#ember-testing';
     ENV.APP.autoboot = false;
+
+    
+    
   }
 
   if (environment === 'production') {
     // here you can enable a production-specific feature
   }
+  
 
   return ENV;
 };

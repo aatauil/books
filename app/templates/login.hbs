@@ -1,0 +1,12 @@
+<div class="bg-gray-300 container m-auto my-2 p-4">
+<form {{on "submit" this.authenticate}}>
+  <label for="identification">Login</label>
+  <Input id='identification' placeholder="Enter Login" @value={{this.identification}} />
+  <label for="password">Password</label>
+  <Input id='password' placeholder="Enter Password" @value={{this.password}} />
+  <button type="submit">Login</button>
+  {{#if this.errorMessage}}
+    <p>{{this.errorMessage}}</p>
+  {{/if}}
+</form>
+</div>
